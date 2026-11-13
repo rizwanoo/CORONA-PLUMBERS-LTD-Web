@@ -1,0 +1,6 @@
+{
+  "name": "CORONA PLUMBERS LTD",
+  "description": "Precision plumbing repairs, copper pipework craftsmanship, kitchen and bathroom installations across London.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,993 @@
+@import "bootstrap/dist/css/bootstrap-grid.min.css";
+@import "bootstrap/dist/css/bootstrap-utilities.min.css";
+
+/* ==========================================================================
+   CORONA PLUMBERS LTD — Custom Editorial Design System
+   Zero Cards · Zero Boxes · Zero Pill Badges · Borderless Transparent CTAs
+   Typography: Barlow (Headings) + Inter (Body, Navigation, Forms, CTAs)
+   ========================================================================== */
+
+:root {
+  --corona-blue: #2265d8;
+  --corona-blue-deep: #174aa6;
+  --corona-aqua: #20b9ad;
+  --corona-aqua-deep: #158f86;
+  --corona-gold: #f2c45c;
+  --corona-copper: #c96e3b;
+  --corona-sky: #e7f2ff;
+  --corona-sage: #e8f2e9;
+  --corona-ivory: #f8f5ec;
+  --corona-slate: #34414a;
+  --corona-slate-muted: #52626d;
+  --corona-white: #ffffff;
+  --corona-hairline: rgba(52, 65, 74, 0.14);
+  --corona-hairline-light: rgba(255, 255, 255, 0.24);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--corona-slate);
+  background-color: var(--corona-ivory);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Hierarchy */
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: "Barlow", sans-serif;
+  margin-top: 0;
+  color: inherit;
+  text-wrap: balance;
+}
+
+h1,
+.hero-headline {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5.2vw, 4.75rem);
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+}
+
+h2,
+.section-headline {
+  font-weight: 700;
+  font-size: clamp(1.95rem, 3.4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+h3,
+.subheading {
+  font-weight: 600;
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1.15rem;
+  max-width: 66ch;
+}
+
+.lead-copy {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.0625rem, 1.35vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.important-copy {
+  font-weight: 600;
+}
+
+.editorial-kicker {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--corona-aqua);
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Skip Link (Accessibility)
+   ========================================================================== */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  background: var(--corona-slate);
+  color: var(--corona-white);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ==========================================================================
+   Slim Top Cinematic Scroll Progress Bar
+   ========================================================================== */
+.scroll-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1150;
+  pointer-events: none;
+  background: transparent;
+}
+
+.scroll-progress-bar {
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(
+    90deg,
+    var(--corona-blue) 0%,
+    var(--corona-aqua) 58%,
+    var(--corona-gold) 100%
+  );
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Cinematic Transparent Navbar
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  padding: 0.9rem 0;
+  transition: background-color 280ms var(--ease-editorial),
+    border-color 280ms var(--ease-editorial),
+    padding 280ms var(--ease-editorial),
+    color 280ms var(--ease-editorial);
+  border-bottom: 1px solid transparent;
+  /* Subtle local contrast behind header text only; never tints the full hero */
+  background: linear-gradient(
+    to bottom,
+    rgba(22, 30, 36, 0.54) 0%,
+    rgba(22, 30, 36, 0.22) 62%,
+    rgba(22, 30, 36, 0) 100%
+  );
+  color: var(--corona-white);
+}
+
+.site-header.header-light-surface {
+  background: rgba(248, 245, 236, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--corona-slate);
+  border-bottom-color: var(--corona-hairline);
+}
+
+.site-header.is-scrolled {
+  background: rgba(248, 245, 236, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--corona-slate);
+  padding: 0.55rem 0;
+  border-bottom-color: var(--corona-hairline);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.24));
+  transition: transform 240ms var(--ease-editorial);
+}
+
+.site-header.is-scrolled .brand-logo-img,
+.site-header.header-light-surface .brand-logo-img {
+  filter: drop-shadow(0 2px 6px rgba(52, 65, 74, 0.16));
+}
+
+@media (min-width: 992px) {
+  .brand-logo-img {
+    height: 82px;
+  }
+  .site-header.is-scrolled .brand-logo-img {
+    height: 76px;
+  }
+}
+
+.brand-wordmark {
+  font-family: "Barlow", sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1200px) {
+  .brand-wordmark {
+    font-size: 1.2rem;
+  }
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 1.85rem;
+}
+
+@media (min-width: 992px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+.nav-item-link,
+.nav-dropdown-trigger {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.84rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  padding: 0.5rem 0;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 180ms var(--ease-editorial);
+}
+
+.nav-item-link::after,
+.nav-dropdown-trigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.2rem;
+  height: 2px;
+  background: var(--corona-aqua);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms var(--ease-editorial);
+}
+
+.nav-item-link:hover::after,
+.nav-item-link.is-active::after,
+.nav-dropdown.is-open .nav-dropdown-trigger::after {
+  transform: scaleX(1);
+}
+
+/* Services Dropdown — continuous hover bridge so cursor never drops out */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 265px;
+  padding-top: 0.85rem; /* invisible hover bridge */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 180ms var(--ease-editorial),
+    transform 180ms var(--ease-editorial),
+    visibility 180ms;
+  z-index: 1050;
+}
+
+.nav-dropdown.is-open .nav-dropdown-menu,
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav-dropdown-surface {
+  background-color: var(--corona-ivory);
+  color: var(--corona-slate);
+  border-top: 2px solid var(--corona-blue);
+  border-bottom: 1px solid var(--corona-hairline);
+  padding: 0.9rem 1.35rem;
+  box-shadow: 0 18px 40px rgba(24, 34, 42, 0.14);
+}
+
+.nav-dropdown-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--corona-slate);
+  border-bottom: 1px solid rgba(52, 65, 74, 0.08);
+  transition: color 160ms ease, padding-left 160ms var(--ease-editorial);
+}
+
+.nav-dropdown-link:last-child {
+  border-bottom: 0;
+}
+
+.nav-dropdown-link:hover {
+  color: var(--corona-blue);
+  padding-left: 0.35rem;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 0;
+  padding: 0.5rem 0.25rem;
+  min-height: 44px;
+  min-width: 44px;
+  justify-content: flex-end;
+  color: inherit;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+}
+
+/* Mobile Full-Height Navigation Drawer */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background-color: var(--corona-ivory);
+  color: var(--corona-slate);
+  transform: translateX(100%);
+  transition: transform 320ms var(--ease-editorial);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1.75rem 2.25rem;
+  overflow-y: auto;
+}
+
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  min-height: 48px;
+  font-family: "Barlow", sans-serif;
+  font-weight: 700;
+  font-size: 1.65rem;
+  border-bottom: 1px solid var(--corona-hairline);
+  color: var(--corona-slate);
+}
+
+.mobile-drawer-sublink {
+  display: block;
+  padding: 0.55rem 0 0.55rem 0.75rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--corona-slate-muted);
+}
+
+/* ==========================================================================
+   Borderless Transparent CTAs (Zero borders, zero outlines, zero radius)
+   ========================================================================== */
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  padding: 0.45rem 0;
+  min-height: 44px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  transition: color 200ms var(--ease-editorial);
+}
+
+.cta-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.25rem;
+  height: 2px;
+  background-color: currentColor;
+  transform-origin: left center;
+  transition: transform 240ms var(--ease-editorial), background-color 200ms ease;
+}
+
+.cta-link .cta-arrow {
+  display: inline-block;
+  transition: transform 220ms var(--ease-editorial);
+}
+
+.cta-link:hover .cta-arrow {
+  transform: translateX(5px);
+}
+
+.cta-link--light {
+  color: var(--corona-white);
+}
+
+.cta-link--light:hover {
+  color: var(--corona-gold);
+}
+
+.cta-link--blue {
+  color: var(--corona-blue);
+}
+
+.cta-link--blue:hover {
+  color: var(--corona-aqua-deep);
+}
+
+.cta-link--slate {
+  color: var(--corona-slate);
+}
+
+.cta-link--slate:hover {
+  color: var(--corona-blue);
+}
+
+.cta-link--gold {
+  color: var(--corona-gold);
+}
+
+.cta-link--gold:hover {
+  color: var(--corona-white);
+}
+
+/* ==========================================================================
+   Cinematic Full-Bleed Hero & Parallax Containers
+   ========================================================================== */
+.hero-cinematic {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 8.5rem;
+  padding-bottom: 4.5rem;
+  overflow: hidden;
+  color: var(--corona-white);
+  background-color: var(--corona-slate);
+}
+
+.hero-subpage {
+  position: relative;
+  min-height: 62vh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 9.5rem;
+  padding-bottom: 3.75rem;
+  overflow: hidden;
+  color: var(--corona-white);
+  background-color: var(--corona-slate);
+}
+
+.hero-media-wrap {
+  position: absolute;
+  inset: -6% 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+}
+
+.hero-media-img--plumber {
+  object-position: 68% 18%;
+}
+
+/* Subtle natural contrast scrim only at bottom-left for text legibility — keeps hero bright */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(22, 31, 38, 0.72) 0%,
+    rgba(22, 31, 38, 0.44) 48%,
+    rgba(22, 31, 38, 0.12) 100%
+  ),
+  linear-gradient(
+    to top,
+    rgba(22, 31, 38, 0.68) 0%,
+    rgba(22, 31, 38, 0.14) 45%,
+    rgba(22, 31, 38, 0.34) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Full-Width Editorial Color Bands
+   ========================================================================== */
+.band-ivory {
+  background-color: var(--corona-ivory);
+  color: var(--corona-slate);
+}
+
+.band-sky {
+  background-color: var(--corona-sky);
+  color: var(--corona-slate);
+}
+
+.band-sage {
+  background-color: var(--corona-sage);
+  color: var(--corona-slate);
+}
+
+.band-blue {
+  background-color: var(--corona-blue);
+  color: var(--corona-white);
+}
+
+.band-aqua {
+  background-color: var(--corona-aqua);
+  color: var(--corona-slate);
+}
+
+.band-white {
+  background-color: var(--corona-white);
+  color: var(--corona-slate);
+}
+
+.band-slate {
+  background-color: var(--corona-slate);
+  color: var(--corona-white);
+}
+
+.editorial-section {
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .editorial-section {
+    padding: 7.25rem 0;
+  }
+}
+
+/* Hairline Dividers (No boxed borders) */
+.hairline-row {
+  border-top: 1px solid var(--corona-hairline);
+  padding: 1.75rem 0;
+  transition: padding-left 220ms var(--ease-editorial), border-color 220ms ease;
+}
+
+.hairline-row:last-child {
+  border-bottom: 1px solid var(--corona-hairline);
+}
+
+.hairline-row--light {
+  border-top: 1px solid var(--corona-hairline-light);
+}
+
+.hairline-row--light:last-child {
+  border-bottom: 1px solid var(--corona-hairline-light);
+}
+
+.hairline-row:hover {
+  border-top-color: var(--corona-blue);
+}
+
+/* Editorial Image Frames (Sharp architectural edges, zero rounded card borders) */
+.editorial-photo-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 0;
+}
+
+.editorial-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  will-change: transform;
+}
+
+.aspect-16x9 {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-4x3 {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-3x4 {
+  aspect-ratio: 3 / 4;
+}
+
+.editorial-overlap-right {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .editorial-overlap-secondary {
+    margin-top: -5rem;
+    margin-left: 3.5rem;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* ==========================================================================
+   Sticky Sub-Navigation Bar (Services Page)
+   ========================================================================== */
+.services-subnav {
+  background-color: var(--corona-white);
+  border-bottom: 1px solid var(--corona-hairline);
+  padding: 0.9rem 0;
+}
+
+.services-subnav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  align-items: center;
+}
+
+.services-subnav-link {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--corona-slate-muted);
+  white-space: nowrap;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.services-subnav-link:hover,
+.services-subnav-link.is-active {
+  color: var(--corona-blue);
+  border-bottom-color: var(--corona-blue);
+}
+
+/* ==========================================================================
+   Horizontal Editorial Showcase Track (Our Work Page)
+   ========================================================================== */
+.horizontal-gallery-section {
+  overflow: hidden;
+}
+
+.horizontal-track {
+  display: flex;
+  gap: 2.5rem;
+  padding: 1rem 0 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+
+@media (min-width: 992px) {
+  .horizontal-track {
+    overflow-x: visible;
+    width: max-content;
+    gap: 3.5rem;
+  }
+}
+
+.horizontal-slide {
+  flex: 0 0 84vw;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .horizontal-slide {
+    flex: 0 0 58vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .horizontal-slide {
+    flex: 0 0 46vw;
+  }
+}
+
+/* ==========================================================================
+   Open Borderless Underline-Only Forms (Zero Boxes)
+   ========================================================================== */
+.editorial-field-group {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.editorial-label {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--corona-slate);
+  margin-bottom: 0.45rem;
+}
+
+.editorial-input,
+.editorial-select,
+.editorial-textarea {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid rgba(52, 65, 74, 0.28);
+  border-radius: 0;
+  padding: 0.7rem 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--corona-slate);
+  transition: border-color 200ms ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.editorial-input::placeholder,
+.editorial-textarea::placeholder {
+  color: rgba(52, 65, 74, 0.48);
+}
+
+.editorial-input:focus,
+.editorial-select:focus,
+.editorial-textarea:focus {
+  outline: none;
+  border-bottom-color: var(--corona-blue);
+}
+
+.editorial-input.is-invalid,
+.editorial-select.is-invalid,
+.editorial-textarea.is-invalid {
+  border-bottom-color: #b42318;
+}
+
+.field-error-text {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #b42318;
+}
+
+.radio-line-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  padding-top: 0.5rem;
+  border-bottom: 1.5px solid rgba(52, 65, 74, 0.2);
+  padding-bottom: 0.9rem;
+}
+
+.radio-line-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 500;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+.radio-line-option input[type="radio"] {
+  accent-color: var(--corona-blue);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.form-status-banner {
+  padding: 1.25rem 0;
+  border-top: 2px solid var(--corona-aqua-deep);
+  border-bottom: 1px solid var(--corona-hairline);
+  margin-top: 1.5rem;
+}
+
+.form-status-banner.is-error {
+  border-top-color: #b42318;
+  color: #912018;
+}
+
+.form-status-banner.is-success {
+  border-top-color: var(--corona-aqua-deep);
+  color: var(--corona-slate);
+}
+
+/* Honeypot hidden field */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Subtle Ambient Background Motion
+   ========================================================================== */
+.ambient-wave-band {
+  position: relative;
+  overflow: hidden;
+}
+
+.ambient-wave-svg {
+  position: absolute;
+  right: -8%;
+  top: -12%;
+  width: 640px;
+  height: 640px;
+  opacity: 0.14;
+  pointer-events: none;
+  animation: gentleFloat 18s ease-in-out infinite alternate;
+}
+
+@keyframes gentleFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(-24px, 18px, 0) scale(1.04);
+  }
+}
+
+/* ==========================================================================
+   Editorial Footer
+   ========================================================================== */
+.site-footer {
+  background-color: var(--corona-slate);
+  color: var(--corona-ivory);
+  padding: 5rem 0 2.75rem;
+}
+
+.footer-logo-img {
+  height: 92px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-nav-link {
+  display: inline-block;
+  padding: 0.3rem 0;
+  color: rgba(248, 245, 236, 0.82);
+  font-weight: 500;
+  transition: color 160ms ease, transform 160ms var(--ease-editorial);
+}
+
+.footer-nav-link:hover {
+  color: var(--corona-gold);
+  transform: translateX(3px);
+}
+
+.footer-bottom-bar {
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(248, 245, 236, 0.16);
+  font-size: 0.875rem;
+  color: rgba(248, 245, 236, 0.68);
+}
+
+/* ==========================================================================
+   Reduced Motion Compliance
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .ambient-wave-svg {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
